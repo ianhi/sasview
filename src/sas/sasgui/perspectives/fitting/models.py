@@ -181,6 +181,7 @@ def _findModels(dir):
             try:
                 model = load_custom_model(path)
                 plugins[model.name] = model
+                logging.info("Added %s to plugin models" % str(model))
             except Exception:
                 msg = traceback.format_exc()
                 msg += "\nwhile accessing model in %r" % path

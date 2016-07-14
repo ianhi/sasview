@@ -166,6 +166,10 @@ packages.append("sas.sasgui")
 package_dir["sas.sascalc"] = os.path.join("src", "sas", "sascalc")
 packages.append("sas.sascalc")
 
+#sas models to support old plugin models
+package_dir["sas.models"] = os.path.join("src", "sas", "models")
+packages.append("sas.models")
+
 # sas.sascalc.invariant
 package_dir["sas.sascalc.invariant"] = os.path.join("src", "sas", "sascalc", "invariant")
 packages.extend(["sas.sascalc.invariant"])
