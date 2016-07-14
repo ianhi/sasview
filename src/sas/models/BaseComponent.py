@@ -89,17 +89,17 @@ class BaseComponent(object):
         self.dispersion = {}
         self.details = {}
 
-        #for p in self._model_info['parameters']:
-        #    self.params[p.name] = p.default
-        #    self.details[p.name] = [p.units] + p.limits
+        for p in self._model_info['parameters']:
+            self.params[p.name] = p.default
+            self.details[p.name] = [p.units] + p.limits
 
-        # for name in self._model_info['partype']['pd-2d']:
-        #     self.dispersion[name] = {
-        #         'width': 0,
-        #         'npts': 35,
-        #         'nsigmas': 3,
-        #         'type': 'gaussian',
-        #     }
+        for name in self._model_info['partype']['pd-2d']:
+             self.dispersion[name] = {
+                 'width': 0,
+                 'npts': 35,
+                 'nsigmas': 3,
+                 'type': 'gaussian',
+             }
 
 
     def __get_state__(self):
