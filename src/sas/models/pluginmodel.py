@@ -5,7 +5,7 @@ import math
 
 class Model1DPlugin(BaseComponent):
     ## Name of the model
-   
+
     def __init__(self , name="Plugin Model" ):
         """ Initialization """
         BaseComponent.__init__(self, multiplicity=1)

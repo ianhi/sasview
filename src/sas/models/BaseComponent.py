@@ -6,7 +6,7 @@ Provide base functionality for all model components
 import copy
 import numpy
 #TO DO: that about a way to make the parameter
-#is self return if it is fittable or not  
+#is self return if it is fittable or not
 
 class BaseComponent(object):
     """ 
@@ -67,7 +67,6 @@ class BaseComponent(object):
     details = None     # type: Mapping[str, Tuple(str, float, float)]
     #: multiplicity used, or None if no multiplicity controls
     multiplicity = None     # type: Optional[int]
-
 
     def __init__(self, multiplicity):
         """ Initialization"""
