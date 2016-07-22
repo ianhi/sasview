@@ -27,7 +27,7 @@ import operator
 
 import math
 import pylab
-DEFAULT_CMAP = pylab.cm.jet
+DEFAULT_CMAP = matplotlib.cm.get_cmap('viridis')
 import copy
 import numpy
 

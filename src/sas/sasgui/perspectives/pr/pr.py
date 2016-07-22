@@ -21,7 +21,7 @@ import logging
 import time
 import math
 import numpy
-import pylab
+import matplotlib.pyplot as plt
 from sas.sasgui.guiframe.gui_manager import MDIFrame
 from sas.sasgui.guiframe.dataFitting import Data1D
 from sas.sasgui.guiframe.events import NewPlotEvent
@@ -204,7 +204,7 @@ class Plugin(PluginBase):
         radius = 60.0
         d_max = 2 * radius
 
-        r = pylab.arange(0.01, d_max, d_max / 51.0)
+        r = numpy.arange(0.01, d_max, d_max / 51.0)
         M = len(r)
         y = numpy.zeros(M)
         pr_err = numpy.zeros(M)
@@ -245,7 +245,7 @@ class Plugin(PluginBase):
         self.show_pr(out, pr)
 
         # Show I(q) fit
-        q = pylab.arange(0.001, 0.1, 0.01 / 51.0)
+        q = numpy.arange(0.001, 0.1, 0.01 / 51.0)
         self.show_iq(out, pr, q)
 
     def show_shpere(self, x, radius=70.0, x_range=70.0):
@@ -305,7 +305,7 @@ class Plugin(PluginBase):
         if not pr.q_max == None:
             maxq = pr.q_max
 
-        x = pylab.arange(minq, maxq, maxq / 301.0)
+        x = numpy.arange(minq, maxq, maxq / 301.0)
         y = numpy.zeros(len(x))
         err = numpy.zeros(len(x))
         for i in range(len(x)):
@@ -335,7 +335,7 @@ class Plugin(PluginBase):
 
         # If we have used slit smearing, plot the smeared I(q) too
         if pr.slit_width > 0 or pr.slit_height > 0:
-            x = pylab.arange(minq, maxq, maxq / 301.0)
+            x = numpy.arange(minq, maxq, maxq / 301.0)
             y = numpy.zeros(len(x))
             err = numpy.zeros(len(x))
             for i in range(len(x)):
@@ -379,7 +379,7 @@ class Plugin(PluginBase):
         """
         """
         # Show P(r)
-        x = pylab.arange(0.0, pr.d_max, pr.d_max / self._pr_npts)
+        x = numpy.arange(0.0, pr.d_max, pr.d_max / self._pr_npts)
 
         y = numpy.zeros(len(x))
         dy = numpy.zeros(len(x))

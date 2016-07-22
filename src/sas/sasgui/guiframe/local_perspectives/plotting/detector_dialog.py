@@ -6,15 +6,15 @@ import sys
 from sas.sasgui.guiframe.utils import format_number
 from sas.sasgui.guiframe.events import StatusEvent
 from matplotlib.backends.backend_wxagg import FigureCanvasWxAgg as Canvas
-from matplotlib import mpl
-from matplotlib import pylab
+import matplotlib as mpl
+import matplotlib.pyplot as plt
 # FONT size
 if sys.platform.count("win32") > 0:
     FONT_VARIANT = 0
 else:
     FONT_VARIANT = 1
 
-DEFAULT_CMAP = pylab.cm.get_cmap('jet')
+DEFAULT_CMAP = plt.cm.get_cmap('viridis')
 
 class DetectorDialog(wx.Dialog):
     """
@@ -231,7 +231,7 @@ class DetectorDialog(wx.Dialog):
         sizer_params.Add(self.zmax_ctl, (iy, 1), (1, 1),
                          wx.EXPAND | wx.ADJUST_MINSIZE, 0)
         iy += 1
-        self.fig = mpl.figure.Figure(dpi=self.dpi, figsize=(4, 1))
+        self.fig = plt.figure(dpi=self.dpi, figsize=(4, 1))
         self.ax1 = self.fig.add_axes([0.05, 0.65, 0.9, 0.15])
         self.norm = mpl.colors.Normalize(vmin=0, vmax=100)
         self.cb1 = mpl.colorbar.ColorbarBase(self.ax1, cmap=self.cmap,
@@ -242,10 +242,10 @@ class DetectorDialog(wx.Dialog):
         sizer_colormap.Add(self.canvas, 0, wx.LEFT | wx.EXPAND, 5)
         self.cmap_selector = wx.ComboBox(self, -1)
         self.cmap_selector.SetValue(str(self.cmap.name))
-        maps = sorted(m for m in pylab.cm.datad if not m.endswith("_r"))
+        maps = sorted(m for m in plt.colormaps() if not m.endswith("_r"))
 
         for i, m in enumerate(maps):
-            self.cmap_selector.Append(str(m), pylab.get_cmap(m))
+            self.cmap_selector.Append(str(m), plt.cm.get_cmap(m))
 
         wx.EVT_COMBOBOX(self.cmap_selector, -1, self._on_select_cmap)
         sizer_selection.Add(wx.StaticText(self, -1, "Select Cmap: "), 0,
@@ -277,6 +277,6 @@ class DetectorDialog(wx.Dialog):
         cmap_name = self.cmap_selector.GetCurrentSelection()
         current_cmap = self.cmap_selector.GetClientData(cmap_name)
         self.cmap = current_cmap
-        self.cb1 = mpl.colorbar.ColorbarBase(self.ax1, cmap=self.cmap,
+        self.cb1 = plt.colorbar.ColorbarBase(self.ax1, cmap=self.cmap,
                                              norm=self.norm, orientation='horizontal')
         self.canvas.draw()
